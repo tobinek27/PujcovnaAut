@@ -49,15 +49,20 @@ class Program
 
         List<Car> carList = new List<Car>
         {
-            new Car(4, "Red", "Toyota", "Camry", 200),
-            new Car(4, "Black", "Honda", "Civic", 180),
-            new Car(4, "Blue", "Ford", "Mustang", 300),
-            new Car(4, "Green", "Chevrolet", "Corvette", 450)
+            new Car(4, "Red", "Toyota", "Camry", 200, 5.751),
+            new Car(4, "Black", "Honda", "Civic", 180, 7.515),
+            new Car(4, "Blue", "Ford", "Mustang", 300, 44.997),
+            new Car(4, "Green", "Chevrolet", "Corvette", 450, 55.751)
         };
 
         string dateString = "2024-05-10 15:30:00";
         DateTime rentalEndDate = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
         Rental testRental = new Rental(customerList[0], carList[0], rentalEndDate);
         Console.WriteLine(testRental);
+
+        foreach (var car in carList)
+        {
+            Console.WriteLine(car);
+        }
     }
 }

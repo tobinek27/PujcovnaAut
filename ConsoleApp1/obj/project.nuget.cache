@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/DEglE++lh4TZdRwrPJuSjvjvZKFLe1FQqSwitNmxO8PlHaemUg+MqwLVG6PMncGjFRAQ+32YAY30+lVUIq9sQ==",
+  "dgSpecHash": "uLVmGFVkYwfilG78J+6DdLJed0loEGzVfUUrb3TaHwx3IznCObR5Gov2aI32pYhy71Hsn/oZ9tlpGoMUiMRmcA==",
   "success": true,
-  "projectFilePath": "/home/tobinek/RiderProjects/PujcovnaAut/ConsoleApp1/ConsoleApp1.csproj",
-  "expectedPackageFiles": [
-    "/home/tobinek/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.17/microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\tobia\\RiderProjects\\PujcovnaAut\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
