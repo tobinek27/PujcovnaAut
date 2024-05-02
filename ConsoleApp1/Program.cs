@@ -1,4 +1,5 @@
 ﻿namespace ConsoleApp1;
+using System.Globalization;
 
 
 class Program
@@ -54,5 +55,9 @@ class Program
             new Car(4, "Green", "Chevrolet", "Corvette", 450)
         };
 
+        string dateString = "2024-05-10 15:30:00";
+        DateTime rentalEndDate = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+        Rental testRental = new Rental(customerList[0], carList[0], rentalEndDate);
+        Console.WriteLine(testRental);
     }
 }
