@@ -5,7 +5,6 @@ public class Car : Vehicle
     private string _manufacturer;
     private string _model;
     private int _horsepower;
-    private double _rentPerHour;
 
 
     public string Manufacturer
@@ -50,24 +49,17 @@ public class Car : Vehicle
         }
     }
 
-    public double RentPerHour
-    {
-        get => _rentPerHour;
-        set => _rentPerHour = Math.Round(value, 2);
-    }
-    
-    public Car(int numberOfWheels, string color, string manufacturer, string model, int horsepower, double rentPerHour)
+    public Car(int numberOfWheels, string color, string manufacturer, string model, int horsepower)
     : base(numberOfWheels, color)
     {
         Manufacturer = manufacturer;
         Model = model;
         Horsepower = horsepower;
-        RentPerHour = rentPerHour;
     }
 
     public override string ToString()
     {
-        return $"Car with {NumberOfWheels} wheels, colored {Color}, manufacturer: {Manufacturer}, model: {Model}, " +
-               $"horsepower: {Horsepower}, cost for rent per hour: {RentPerHour}";
+        return $"Car with {NumberOfWheels} wheels, colored {Color}, manufacturer: {Manufacturer}, model: {Model}," +
+               $"horsepower: {Horsepower}";
     }
 }
