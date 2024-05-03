@@ -37,7 +37,7 @@ public class Customer : Person
     }
 
     public Customer(string firstName, string lastName, DateTime birthdate, string email, DateTime registrationDate)
-    : base(firstName, lastName, birthdate)
+        : base(firstName, lastName, birthdate)
     {
         Email = email;
         RegistrationDate = registrationDate;
