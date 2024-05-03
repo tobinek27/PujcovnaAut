@@ -20,20 +20,6 @@ public class Rental
         RentalStartDate = rentalStartDate;
         RentalEndDate = rentalEndDate;
     }
-
-    public Rental (Customer customer, Car car, DateTime rentalEndDate)
-    {
-        Customer = customer ?? throw new ArgumentNullException(nameof(customer));
-        Car = car ?? throw new ArgumentNullException(nameof(car));
-
-        if (DateTime.Now >= rentalEndDate)
-        {
-            throw new ArgumentException("Rental start date must be before rental end date");
-        }
-        
-        RentalStartDate = DateTime.Now;
-        RentalEndDate = rentalEndDate;
-    }
     
     public override string ToString()
     {
