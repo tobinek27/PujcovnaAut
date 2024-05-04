@@ -24,8 +24,8 @@ public class Rental
     public override string ToString()
     {
         return
-            $"rental details:\nCustomer: {Customer.FirstName} {Customer.LastName}\nCar: {Car.Manufacturer} {Car.Model}\n" +
-            $"rental period: {RentalStartDate:yyyy-MM-dd HH:mm:ss} to {RentalEndDate:yyyy-MM-dd HH:mm:ss}";
+            $"Rental details:\nCustomer: {Customer.FirstName} {Customer.LastName}\nCar: {Car.Manufacturer} {Car.Model}\n" +
+            $"rental period: {RentalStartDate:yyyy-MM-dd HH:mm:ss} to {RentalEndDate:yyyy-MM-dd HH:mm:ss}.";
     }
 
     public double CountTheCost()

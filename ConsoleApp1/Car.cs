@@ -67,7 +67,7 @@ public class Car : Vehicle
 
     public override string ToString()
     {
-        return $"Car with {NumberOfWheels} wheels, colored {Color}, manufacturer: {Manufacturer}, model: {Model}, " +
-               $"horsepower: {Horsepower}, cost for rent per hour: {RentPerHour}";
+        return $"Car with {NumberOfWheels} wheels, colored {Color}, manufacturer: {Manufacturer},\nmodel: {Model}, " +
+               $"horsepower: {Horsepower}, cost for rent per hour: {RentPerHour}.";
     }
 }

@@ -60,7 +60,7 @@ public class Person
 
     public override string ToString()
     {
-        return $"person's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}";
+        return $"Person's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}.";
     }
 
     public int GetAge()

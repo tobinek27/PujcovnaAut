@@ -45,8 +45,8 @@ public class Customer : Person
 
     public override string ToString()
     {
-        return $"customer's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}, " +
-               $"email: {Email} and registration date: {RegistrationDate.ToString("yyyy-MM-dd")}";
+        return $"Customer's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}, " +
+               $"email: {Email} and registration date: {RegistrationDate.ToString("yyyy-MM-dd")}.";
     }
 
     private bool IsValidEmail(string email)
