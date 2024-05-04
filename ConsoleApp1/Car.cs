@@ -55,7 +55,7 @@ public class Car : Vehicle
         get => _rentPerHour;
         set => _rentPerHour = Math.Round(value, 2);
     }
-    
+
     public Car(int numberOfWheels, string color, string manufacturer, string model, int horsepower, double rentPerHour)
         : base(numberOfWheels, color)
     {

@@ -1,6 +1,6 @@
 namespace ConsoleApp1;
-using System.Text.RegularExpressions;
 
+using System.Text.RegularExpressions;
 
 public class Customer : Person
 {
@@ -21,7 +21,7 @@ public class Customer : Person
             _email = value;
         }
     }
-    
+
     public DateTime RegistrationDate
     {
         get => _registrationDate;
@@ -48,9 +48,14 @@ public class Customer : Person
         return $"customer's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}, " +
                $"email: {Email} and registration date: {RegistrationDate.ToString("yyyy-MM-dd")}";
     }
-    
+
     private bool IsValidEmail(string email)
     {
+        // matches characters a-z, A-Z, 0-9 and some special characters
+        // then a '@'
+        // then a domain/subdomain: a-z A-Z 0-9
+        // then a dot '.'
+        // and at last, a no-less-than two character long extension
         string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
         return Regex.IsMatch(email, pattern);
     }

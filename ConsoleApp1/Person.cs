@@ -1,13 +1,12 @@
 namespace ConsoleApp1;
 
-
 public class Person
 {
     private string _firstName;
     private string _lastName;
     private DateTime _birthdate;
 
-    
+
     public string FirstName
     {
         get => _firstName;
@@ -62,5 +61,25 @@ public class Person
     public override string ToString()
     {
         return $"person's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}";
+    }
+
+    public int GetAge()
+    {
+        DateTime today = DateTime.Today;
+        int age = today.Year - Birthdate.Year;
+
+        // this checks if the birthday has already occured this year
+        if (Birthdate.Date > today.AddYears(-age))
+            age--;
+
+        return age;
+    }
+
+    public Customer PromoteToCustomer()
+    {
+        string email = $"{FirstName.ToLower()}.{LastName.ToLower()}@example.com";
+        Customer customer = new Customer(FirstName, LastName, Birthdate, email, DateTime.Now);
+
+        return customer;
     }
 }

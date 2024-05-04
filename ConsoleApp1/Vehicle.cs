@@ -33,7 +33,7 @@ public class Vehicle
             _color = value;
         }
     }
-    
+
     public Vehicle(int numberOfWheels, string color)
     {
         NumberOfWheels = numberOfWheels;

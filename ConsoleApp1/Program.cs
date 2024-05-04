@@ -80,7 +80,7 @@ class Program
                 new DateTime(2024, 5, 15)
             ),
             new(
-                customerList[5],
+                customerList[3],
                 carList[6],
                 new DateTime(2024, 4, 20),
                 new DateTime(2024, 5, 5)
@@ -98,25 +98,25 @@ class Program
                 new DateTime(2024, 5, 15)
             ),
             new(
-                customerList[6],
+                customerList[4],
                 carList[0],
                 new DateTime(2024, 5, 5),
                 new DateTime(2024, 5, 20)
             ),
             new(
-                customerList[7],
+                customerList[3],
                 carList[2],
                 new DateTime(2024, 4, 28),
                 new DateTime(2024, 5, 10)
             ),
             new(
-                customerList[8],
+                customerList[4],
                 carList[3],
                 new DateTime(2024, 5, 2),
                 new DateTime(2024, 5, 12)
             ),
             new(
-                customerList[9],
+                customerList[2],
                 carList[1],
                 new DateTime(2024, 5, 3),
                 new DateTime(2024, 5, 13)
@@ -127,5 +127,18 @@ class Program
         {
             Console.WriteLine(rental);
         }
+
+        foreach (var person in customerList)
+        {
+            Console.WriteLine(person.GetAge());
+        }
+
+        foreach (var rental in rentalList)
+        {
+            Console.WriteLine(rental.CountTheCost());
+        }
+
+        Customer customerForTesting = personList[1].PromoteToCustomer();
+        Console.WriteLine(customerForTesting.Email);
     }
 }

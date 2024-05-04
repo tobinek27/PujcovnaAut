@@ -20,10 +20,21 @@ public class Rental
         RentalStartDate = rentalStartDate;
         RentalEndDate = rentalEndDate;
     }
-    
+
     public override string ToString()
     {
-        return $"rental details:\nCustomer: {Customer.FirstName} {Customer.LastName}\nCar: {Car.Manufacturer} {Car.Model}\n" +
-               $"rental period: {RentalStartDate:yyyy-MM-dd HH:mm:ss} to {RentalEndDate:yyyy-MM-dd HH:mm:ss}";
+        return
+            $"rental details:\nCustomer: {Customer.FirstName} {Customer.LastName}\nCar: {Car.Manufacturer} {Car.Model}\n" +
+            $"rental period: {RentalStartDate:yyyy-MM-dd HH:mm:ss} to {RentalEndDate:yyyy-MM-dd HH:mm:ss}";
+    }
+
+    public double CountTheCost()
+    {
+        TimeSpan rentalDuration = RentalEndDate - RentalStartDate;
+        double rentalHours = rentalDuration.TotalHours;
+        double totalCost = rentalHours * Car.RentPerHour;
+        totalCost = Math.Round(totalCost, 2);
+
+        return totalCost;
     }
 }
