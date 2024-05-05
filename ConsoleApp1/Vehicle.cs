@@ -1,47 +1,66 @@
-namespace ConsoleApp1;
+using System;
 
-public class Vehicle
+namespace ConsoleApp1
 {
-    private int _numberOfWheels;
-    private string _color;
-
-
-    public int NumberOfWheels
+    public class Vehicle
     {
-        get => _numberOfWheels;
-        set
+        private int _numberOfWheels;
+        private string _color;
+
+        /// <summary>
+        /// Gets or sets the number of wheels of the vehicle.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided number of wheels is not positive.</exception>
+        public int NumberOfWheels
         {
-            if (value <= 0)
+            get => _numberOfWheels;
+            set
             {
-                throw new ArgumentException($"invalid number of wheels: {value}");
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"Invalid number of wheels: {value}");
+                }
+
+                _numberOfWheels = value;
             }
-
-            _numberOfWheels = value;
         }
-    }
 
-    public string Color
-    {
-        get => _color;
-        set
+        /// <summary>
+        /// Gets or sets the color of the vehicle.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided color is null or empty.</exception>
+        public string Color
         {
-            if (string.IsNullOrEmpty(value))
+            get => _color;
+            set
             {
-                throw new ArgumentException($"invalid color: {value}");
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException($"Invalid color: {value}");
+                }
+
+                _color = value;
             }
-
-            _color = value;
         }
-    }
 
-    public Vehicle(int numberOfWheels, string color)
-    {
-        NumberOfWheels = numberOfWheels;
-        Color = color;
-    }
+        /// <summary>
+        /// Initializes a new instance of the Vehicle class with the specified parameters.
+        /// </summary>
+        /// <param name="numberOfWheels">The number of wheels of the vehicle.</param>
+        /// <param name="color">The color of the vehicle.</param>
+        public Vehicle(int numberOfWheels, string color)
+        {
+            NumberOfWheels = numberOfWheels;
+            Color = color;
+        }
 
-    public override string ToString()
-    {
-        return $"Vehicle with {NumberOfWheels} wheels, colored {Color}.";
+        /// <summary>
+        /// Overrides the default ToString method to provide a string representation of the vehicle's details.
+        /// </summary>
+        /// <returns>A string containing the number of wheels and the color of the vehicle.</returns>
+        public override string ToString()
+        {
+            return $"Vehicle with {NumberOfWheels} wheels, colored {Color}.";
+        }
     }
 }

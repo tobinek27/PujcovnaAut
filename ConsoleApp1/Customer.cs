@@ -1,62 +1,84 @@
-namespace ConsoleApp1;
-
+using System;
 using System.Text.RegularExpressions;
 
-public class Customer : Person
+namespace ConsoleApp1
 {
-    private string _email;
-    private DateTime _registrationDate;
-
-
-    public string Email
+    public class Customer : Person
     {
-        get => _email;
-        set
+        private string _email;
+        private DateTime _registrationDate;
+
+        /// <summary>
+        /// Gets or sets the email address of the customer.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided email address is not valid.</exception>
+        public string Email
         {
-            if (!IsValidEmail(value))
+            get => _email;
+            set
             {
-                throw new ArgumentException($"invalid email address provided: {value}");
+                if (!IsValidEmail(value))
+                {
+                    throw new ArgumentException($"Invalid email address provided: {value}");
+                }
+
+                _email = value;
             }
-
-            _email = value;
         }
-    }
 
-    public DateTime RegistrationDate
-    {
-        get => _registrationDate;
-        set
+        /// <summary>
+        /// Gets or sets the registration date of the customer.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided registration date is before 1900 or not a valid date.</exception>
+        public DateTime RegistrationDate
         {
-            if (value.Year <= 1899 || value.Month < 1 || value.Month > 12 || value.Day < 1 || value.Day > 31)
+            get => _registrationDate;
+            set
             {
-                throw new ArgumentException($"invalid date provided: {value.ToString("yyyy-MM-dd")}");
+                if (value.Year <= 1899 || value.Month < 1 || value.Month > 12 || value.Day < 1 || value.Day > 31)
+                {
+                    throw new ArgumentException($"Invalid date provided: {value:yyyy-MM-dd}");
+                }
+
+                _registrationDate = value;
             }
-
-            _registrationDate = value;
         }
-    }
 
-    public Customer(string firstName, string lastName, DateTime birthdate, string email, DateTime registrationDate)
-        : base(firstName, lastName, birthdate)
-    {
-        Email = email;
-        RegistrationDate = registrationDate;
-    }
+        /// <summary>
+        /// Initializes a new instance of the Customer class with the specified parameters.
+        /// </summary>
+        /// <param name="firstName">The first name of the customer.</param>
+        /// <param name="lastName">The last name of the customer.</param>
+        /// <param name="birthdate">The birthdate of the customer.</param>
+        /// <param name="email">The email address of the customer.</param>
+        /// <param name="registrationDate">The registration date of the customer.</param>
+        public Customer(string firstName, string lastName, DateTime birthdate, string email, DateTime registrationDate)
+            : base(firstName, lastName, birthdate)
+        {
+            Email = email;
+            RegistrationDate = registrationDate;
+        }
 
-    public override string ToString()
-    {
-        return $"Customer's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}, " +
-               $"email: {Email} and registration date: {RegistrationDate.ToString("yyyy-MM-dd")}.";
-    }
+        /// <summary>
+        /// Overrides the default ToString method to provide a string representation of the customer's details.
+        /// </summary>
+        /// <returns>A string containing the customer's full name, date of birth, email, and registration date.</returns>
+        public override string ToString()
+        {
+            return $"Customer's full name: {FirstName} {LastName}, date of birth: {Birthdate:yyyy-MM-dd}, " +
+                   $"email: {Email} and registration date: {RegistrationDate:yyyy-MM-dd}.";
+        }
 
-    private bool IsValidEmail(string email)
-    {
-        // matches characters a-z, A-Z, 0-9 and some special characters
-        // then a '@'
-        // then a domain/subdomain: a-z A-Z 0-9
-        // then a dot '.'
-        // and at last, a no-less-than two character long extension
-        string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-        return Regex.IsMatch(email, pattern);
+        /// <summary>
+        /// Checks if the provided email address is valid.
+        /// </summary>
+        /// <param name="email">The email address to validate.</param>
+        /// <returns>True if the email address is valid, otherwise false.</returns>
+        private bool IsValidEmail(string email)
+        {
+            // Regex pattern to validate email address
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, pattern);
+        }
     }
 }

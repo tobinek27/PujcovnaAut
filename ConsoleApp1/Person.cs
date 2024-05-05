@@ -1,85 +1,115 @@
-namespace ConsoleApp1;
-
-public class Person
+namespace ConsoleApp1
 {
-    private string _firstName;
-    private string _lastName;
-    private DateTime _birthdate;
-
-
-    public string FirstName
+    public class Person
     {
-        get => _firstName;
-        set
+        private string _firstName;
+        private string _lastName;
+        private DateTime _birthdate;
+
+        /// <summary>
+        /// Gets or sets the first name of the person.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided first name is null, empty, shorter than 3 characters, or longer than 32 characters.</exception>
+        public string FirstName
         {
-            if (string.IsNullOrEmpty(value) || value.Length <= 2 || value.Length >= 32)
+            get => _firstName;
+            set
             {
-                throw new ArgumentException("first name must be no shorter than 3 characters" +
-                                            ", and no longer than 32 characters");
+                if (string.IsNullOrEmpty(value) || value.Length <= 2 || value.Length >= 32)
+                {
+                    throw new ArgumentException(
+                        "First name must be no shorter than 3 characters and no longer than 32 characters");
+                }
+
+                _firstName = value;
             }
-
-            _firstName = value;
         }
-    }
 
-    public string LastName
-    {
-        get => _lastName;
-        set
+        /// <summary>
+        /// Gets or sets the last name of the person.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided last name is null, empty, shorter than 3 characters, or longer than 32 characters.</exception>
+        public string LastName
         {
-            if (string.IsNullOrEmpty(value) || value.Length <= 2 || value.Length >= 32)
+            get => _lastName;
+            set
             {
-                throw new ArgumentException("last name must be no shorter than 3 characters" +
-                                            ", and no longer than 32 characters");
+                if (string.IsNullOrEmpty(value) || value.Length <= 2 || value.Length >= 32)
+                {
+                    throw new ArgumentException(
+                        "Last name must be no shorter than 3 characters and no longer than 32 characters");
+                }
+
+                _lastName = value;
             }
-
-            _lastName = value;
         }
-    }
 
-    public DateTime Birthdate
-    {
-        get => _birthdate;
-        set
+        /// <summary>
+        /// Gets or sets the birthdate of the person.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided birthdate is before 1900 or not a valid date.</exception>
+        public DateTime Birthdate
         {
-            if (value.Year <= 1899 || value.Month < 1 || value.Month > 12 || value.Day < 1 || value.Day > 31)
+            get => _birthdate;
+            set
             {
-                throw new ArgumentException($"invalid date provided: {value.ToString("yyyy-MM-dd")}");
+                if (value.Year <= 1899 || value.Month < 1 || value.Month > 12 || value.Day < 1 || value.Day > 31)
+                {
+                    throw new ArgumentException($"Invalid date provided: {value:yyyy-MM-dd}");
+                }
+
+                _birthdate = value;
             }
-
-            _birthdate = value;
         }
-    }
 
-    public Person(string firstName, string lastName, DateTime birthdate)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        Birthdate = birthdate;
-    }
+        /// <summary>
+        /// Initializes a new instance of the Person class with the specified parameters.
+        /// </summary>
+        /// <param name="firstName">The first name of the person.</param>
+        /// <param name="lastName">The last name of the person.</param>
+        /// <param name="birthdate">The birthdate of the person.</param>
+        public Person(string firstName, string lastName, DateTime birthdate)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Birthdate = birthdate;
+        }
 
-    public override string ToString()
-    {
-        return $"Person's full name: {FirstName} {LastName}, date of birth: {Birthdate.ToString("yyyy-MM-dd")}.";
-    }
+        /// <summary>
+        /// Overrides the default ToString method to provide a string representation of the person's details.
+        /// </summary>
+        /// <returns>A string containing the person's full name and date of birth.</returns>
+        public override string ToString()
+        {
+            return $"Person's full name: {FirstName} {LastName}, date of birth: {Birthdate:yyyy-MM-dd}.";
+        }
 
-    public int GetAge()
-    {
-        DateTime today = DateTime.Today;
-        int age = today.Year - Birthdate.Year;
+        /// <summary>
+        /// Calculates the age of the person based on the current date.
+        /// </summary>
+        /// <returns>The age of the person.</returns>
+        public int GetAge()
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - Birthdate.Year;
 
-        // this checks if the birthday has already occured this year
-        if (Birthdate.Date > today.AddYears(-age))
-            age--;
+            // Adjust age if birthday has not occurred yet this year
+            if (Birthdate.Date > today.AddYears(-age))
+                age--;
 
-        return age;
-    }
+            return age;
+        }
 
-    public Customer PromoteToCustomer()
-    {
-        string email = $"{FirstName.ToLower()}.{LastName.ToLower()}@example.com";
-        Customer customer = new Customer(FirstName, LastName, Birthdate, email, DateTime.Now);
+        /// <summary>
+        /// Promotes the person to a customer by generating an email and creating a new Customer object.
+        /// </summary>
+        /// <returns>A Customer object based on the person's details.</returns>
+        public Customer PromoteToCustomer()
+        {
+            string email = $"{FirstName.ToLower()}.{LastName.ToLower()}@example.com";
+            Customer customer = new Customer(FirstName, LastName, Birthdate, email, DateTime.Now);
 
-        return customer;
+            return customer;
+        }
     }
 }

@@ -1,73 +1,105 @@
-namespace ConsoleApp1;
+using System;
 
-public class Car : Vehicle
+namespace ConsoleApp1
 {
-    private string _manufacturer;
-    private string _model;
-    private int _horsepower;
-    private double _rentPerHour;
-
-
-    public string Manufacturer
+    public class Car : Vehicle
     {
-        get => _manufacturer;
-        set
+        private string _manufacturer;
+        private string _model;
+        private int _horsepower;
+        private double _rentPerHour;
+
+        /// <summary>
+        /// Gets or sets the manufacturer of the car.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided manufacturer is null or empty.</exception>
+        public string Manufacturer
         {
-            if (string.IsNullOrEmpty(value))
+            get => _manufacturer;
+            set
             {
-                throw new ArgumentException($"invalid manufacturer: {value}");
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException($"Invalid manufacturer: {value}");
+                }
+
+                _manufacturer = value;
             }
-
-            _manufacturer = value;
         }
-    }
 
-    public string Model
-    {
-        get => _model;
-        set
+        /// <summary>
+        /// Gets or sets the model of the car.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided model is null or empty.</exception>
+        public string Model
         {
-            if (string.IsNullOrEmpty(value))
+            get => _model;
+            set
             {
-                throw new ArgumentException($"invalid model: {value}");
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException($"Invalid model: {value}");
+                }
+
+                _model = value;
             }
-
-            _model = value;
         }
-    }
 
-    public int Horsepower
-    {
-        get => _horsepower;
-        set
+        /// <summary>
+        /// Gets or sets the horsepower of the car.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the provided horsepower is not positive.</exception>
+        public int Horsepower
         {
-            if (value <= 0)
+            get => _horsepower;
+            set
             {
-                throw new ArgumentException($"invalid horsepower: {value}");
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"Invalid horsepower: {value}");
+                }
+
+                _horsepower = value;
             }
-
-            _horsepower = value;
         }
-    }
 
-    public double RentPerHour
-    {
-        get => _rentPerHour;
-        set => _rentPerHour = Math.Round(value, 2);
-    }
+        /// <summary>
+        /// Gets or sets the rent per hour of the car.
+        /// </summary>
+        public double RentPerHour
+        {
+            get => _rentPerHour;
+            set => _rentPerHour = Math.Round(value, 2);
+        }
 
-    public Car(int numberOfWheels, string color, string manufacturer, string model, int horsepower, double rentPerHour)
-        : base(numberOfWheels, color)
-    {
-        Manufacturer = manufacturer;
-        Model = model;
-        Horsepower = horsepower;
-        RentPerHour = rentPerHour;
-    }
+        /// <summary>
+        /// Initializes a new instance of the Car class with the specified parameters.
+        /// </summary>
+        /// <param name="numberOfWheels">The number of wheels of the car.</param>
+        /// <param name="color">The color of the car.</param>
+        /// <param name="manufacturer">The manufacturer of the car.</param>
+        /// <param name="model">The model of the car.</param>
+        /// <param name="horsepower">The horsepower of the car.</param>
+        /// <param name="rentPerHour">The rent per hour of the car.</param>
+        public Car(int numberOfWheels, string color, string manufacturer, string model, int horsepower,
+            double rentPerHour)
+            : base(numberOfWheels, color)
+        {
+            Manufacturer = manufacturer;
+            Model = model;
+            Horsepower = horsepower;
+            RentPerHour = rentPerHour;
+        }
 
-    public override string ToString()
-    {
-        return $"Car with {NumberOfWheels} wheels, colored {Color}, manufacturer: {Manufacturer},\nmodel: {Model}, " +
-               $"horsepower: {Horsepower}, cost for rent per hour: {RentPerHour}.";
+        /// <summary>
+        /// Overrides the default ToString method to provide a string representation of the car's details.
+        /// </summary>
+        /// <returns>A string containing the number of wheels, color, manufacturer, model, horsepower, and rent per hour of the car.</returns>
+        public override string ToString()
+        {
+            return
+                $"Car with {NumberOfWheels} wheels, colored {Color}, manufacturer: {Manufacturer},\nmodel: {Model}, " +
+                $"horsepower: {Horsepower}, cost for rent per hour: {RentPerHour}.";
+        }
     }
 }

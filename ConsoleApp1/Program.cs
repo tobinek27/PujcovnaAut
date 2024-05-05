@@ -68,133 +68,133 @@ class Program
 
         List<Rental> rentalList = new List<Rental>
         {
-            new Rental(
+            new(
                 customerList[0],
                 carList[7],
                 new DateTime(2024, 4, 1),
                 new DateTime(2024, 4, 10)
             ),
-            new Rental(
+            new(
                 customerList[1],
                 carList[5],
                 new DateTime(2024, 3, 15),
                 new DateTime(2024, 3, 25)
             ),
-            new Rental(
+            new(
                 customerList[4],
                 carList[6],
                 new DateTime(2024, 5, 5),
                 new DateTime(2024, 5, 15)
             ),
-            new Rental(
+            new(
                 customerList[3],
                 carList[6],
                 new DateTime(2024, 4, 20),
                 new DateTime(2024, 5, 5)
             ),
-            new Rental(
+            new(
                 customerList[3],
                 carList[5],
                 new DateTime(2024, 5, 1),
                 new DateTime(2024, 5, 10)
             ),
-            new Rental(
+            new(
                 customerList[2],
                 carList[3],
                 new DateTime(2024, 4, 25),
                 new DateTime(2024, 5, 15)
             ),
-            new Rental(
+            new(
                 customerList[4],
                 carList[0],
                 new DateTime(2024, 5, 5),
                 new DateTime(2024, 5, 20)
             ),
-            new Rental(
+            new(
                 customerList[3],
                 carList[2],
                 new DateTime(2024, 4, 28),
                 new DateTime(2024, 5, 10)
             ),
-            new Rental(
+            new(
                 customerList[4],
                 carList[3],
                 new DateTime(2024, 5, 2),
                 new DateTime(2024, 5, 12)
             ),
-            new Rental(
+            new(
                 customerList[2],
                 carList[1],
                 new DateTime(2024, 5, 3),
                 new DateTime(2024, 5, 13)
             ),
-            new Rental(
+            new(
                 customerList[0],
                 carList[8],
                 new DateTime(2024, 5, 10),
                 new DateTime(2024, 5, 20)
             ),
-            new Rental(
+            new(
                 customerList[1],
                 carList[9],
                 new DateTime(2024, 5, 15),
                 new DateTime(2024, 5, 25)
             ),
-            new Rental(
+            new(
                 customerList[3],
                 carList[10],
                 new DateTime(2024, 5, 3),
                 new DateTime(2024, 5, 13)
             ),
-            new Rental(
+            new(
                 customerList[2],
                 carList[11],
                 new DateTime(2024, 5, 7),
                 new DateTime(2024, 5, 17)
             ),
-            new Rental(
+            new(
                 customerList[4],
                 carList[12],
                 new DateTime(2024, 5, 12),
                 new DateTime(2024, 5, 22)
             ),
-            new Rental(
+            new(
                 customerList[1],
                 carList[13],
                 new DateTime(2024, 5, 18),
                 new DateTime(2024, 5, 28)
             ),
-            new Rental(
+            new(
                 customerList[0],
                 carList[14],
                 new DateTime(2024, 5, 24),
                 new DateTime(2024, 6, 3)
             ),
-            new Rental(
+            new(
                 customerList[2],
                 carList[15],
                 new DateTime(2024, 5, 30),
                 new DateTime(2024, 6, 9)
             ),
-            new Rental(
+            new(
                 customerList[4],
                 carList[17],
                 new DateTime(2024, 6, 5),
                 new DateTime(2024, 6, 15)
             ),
-            new Rental(
+            new(
                 customerList[3],
                 carList[17],
                 new DateTime(2024, 6, 11),
                 new DateTime(2024, 6, 21)
             ),
-            new Rental(
+            new(
                 customerList[1],
                 carList[17],
                 new DateTime(2024, 6, 17),
                 new DateTime(2024, 6, 27)
             ),
-            new Rental(
+            new(
                 customerList[0],
                 carList[17],
                 new DateTime(2024, 6, 23),
@@ -224,6 +224,11 @@ class Program
         GetBestSellingCars(carList, rentalList);
     }
 
+    /// <summary>
+    /// Retrieves the available cars for rent based on the provided lists of cars and rentals.
+    /// </summary>
+    /// <param name="carList">The list of all cars.</param>
+    /// <param name="rentalList">The list of all rentals.</param>
     private static void GetAvailableCarsForRent(List<Car> carList, List<Rental> rentalList)
     {
         var availableCars = from car in carList
@@ -242,6 +247,11 @@ class Program
         }
     }
 
+    /// <summary>
+    /// Retrieves the people who are not yet customers based on the provided lists of persons and customers.
+    /// </summary>
+    /// <param name="personList">The list of all persons.</param>
+    /// <param name="customerList">The list of all customers.</param>
     private static void GetNonCustomers(List<Person> personList, List<Customer> customerList)
     {
         var nonCustomers = from person in personList
@@ -258,6 +268,11 @@ class Program
         }
     }
 
+    /// <summary>
+    /// Retrieves the three best-selling cars based on the provided lists of cars and rentals.
+    /// </summary>
+    /// <param name="carList">The list of all cars.</param>
+    /// <param name="rentalList">The list of all rentals.</param>
     private static void GetBestSellingCars(List<Car> carList, List<Rental> rentalList)
     {
         var soldCars = from car in carList
@@ -276,22 +291,4 @@ class Program
                 $"Car: {car.Manufacturer} {car.Model}, cost of rent/hr: {car.RentPerHour}, rental Count: {rentalCount}");
         }
     }
-
-    /*private static void GetBestSellingCars(List<Car> carList, List<Rental> rentalList)
-    {
-        var soldCars = from car in carList
-            join rental in rentalList
-                on car equals rental.Car into carRentals
-            let rentalCount = carRentals.Count()
-            orderby rentalCount descending
-            select (car, rentalCount);
-
-        List<(Car car, int rentalCount)> soldCarsList = soldCars.Take(3).ToList();
-
-        Console.WriteLine("The three best-sellers:");
-        foreach (var (car, rentalCount) in soldCarsList)
-        {
-            Console.WriteLine($"Car: {car.Manufacturer} {car.Model}, Rental Count: {rentalCount}");
-        }
-    }*/
 }
